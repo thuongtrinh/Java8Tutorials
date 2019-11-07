@@ -22,13 +22,13 @@ public class FindDemo {
 		});
 //		list1.stream().findAny().ifPresent(s -> System.out.println(s));
 
-		// Ex2: findAny in single thread
+		// Ex2: findAny with stream is sequential
 		List<String> list2 = Arrays.asList("A", "B", "C", "D");
 		Optional<String> result1 = list2.stream().findAny();
 		System.out.println(result1.isPresent());
 		System.out.println(result1.get());
 
-		// Ex3: findAny in parallel thread
+		// Ex3: findAny with stream is parallel
 		List<Integer> list3 = Arrays.asList(1, 2, 3, 4, 5);
 		Optional<Integer> result2 = list3.stream().parallel().filter(num -> num < 4).findAny();
 		int loopCount = 0;
@@ -46,4 +46,3 @@ public class FindDemo {
 		list4.stream().findFirst().ifPresent(s->System.out.println("findFirst: " + s));
 	}
 }
-

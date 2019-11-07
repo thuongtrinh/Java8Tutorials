@@ -5,7 +5,7 @@ import java.util.function.Predicate;
 
 import txt.java.model.Employee;
 
-public class MatchDemo {
+public class MatchStreamDemo {
 	
 	public static void main(String [] args) {
 		List<Employee> list = Employee.getEmpList();

@@ -7,7 +7,7 @@ import java.util.function.Function;
 import java.util.function.Supplier;
 import java.util.stream.Stream;
 
-public class StreamOfFlatGenerateDemo {
+public class FlatMapGenerateOfStream {
 
 	public static <R> void main(String[] args) {
 		// ------of: returns sequential ordered stream------
@@ -49,7 +49,7 @@ public class StreamOfFlatGenerateDemo {
 		stream.forEach(s -> System.out.println(s));
 	}
 
-	static class Item {
+	private static class Item {
 		private String name;
 
 		public Item(String name) {

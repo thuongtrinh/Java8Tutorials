@@ -56,7 +56,7 @@ public class FilterAndMap {
 //		players.forEach(p -> System.out.println(p.id + ", " + p.name));
 	}
 
-	static class Player {
+	private static class Player {
 		int id;
 		String name;
 

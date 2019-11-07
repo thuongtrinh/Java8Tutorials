@@ -5,7 +5,7 @@ import java.util.List;
 import java.util.function.Consumer;
 import java.util.stream.Stream;
 
-public class ConcatDemo {
+public class ConcatStreamDemo {
 	
 	public static void main(String [] args) {
 		List<String> list1 = Arrays.asList("A1", "A2", "A3");

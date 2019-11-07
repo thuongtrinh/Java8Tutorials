@@ -4,7 +4,7 @@ import java.util.Arrays;
 import java.util.List;
 import java.util.function.Consumer;
 
-public class SortedDemo {
+public class SortedStreamDemo {
 
 	public static void main(String [] args) {
 		List<String> list = Arrays.asList("DC", "CD", "AD");

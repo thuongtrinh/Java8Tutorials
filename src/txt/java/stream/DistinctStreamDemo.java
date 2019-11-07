@@ -4,7 +4,7 @@ import java.util.Arrays;
 import java.util.List;
 import java.util.function.Consumer;
 
-public class DistinctDemo {
+public class DistinctStreamDemo {
 
 	public static void main(String [] args) {
 		List<String> list = Arrays.asList("AA", "AA", "AB", "BB");
