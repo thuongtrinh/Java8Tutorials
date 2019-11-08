@@ -73,7 +73,7 @@ public class ArrayMapListUsingReduceCollect {
 
 			@Override
 			public Integer apply(Integer t, Line line) {
-				System.out.print(t + "  "); // is init value
+				System.out.print(t + "  "); // is value default initialize
 				return t + line.getLength();
 			}
 		}, new BinaryOperator<Integer>() {

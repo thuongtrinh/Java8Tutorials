@@ -52,5 +52,4 @@ public class CollectorsGroupingBy {
 				.forEach((k, v) -> System.out.println("Key " + k + ":\n" + v));
 		
 	}
-
 }
