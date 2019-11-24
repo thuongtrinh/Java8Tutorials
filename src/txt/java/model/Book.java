@@ -24,4 +24,8 @@ public class Book {
 	public void setName(String name) {
 		this.name = name;
 	}
+
+	public void print() {
+		System.out.println("Name:" + name + " and price:" + price);
+	}
 }
