@@ -3,7 +3,7 @@ package txt.java.model;
 import java.util.ArrayList;
 import java.util.List;
 
-public class User {
+public class User implements Comparable<User> {
 	private int id;
 	private String name;
 	private int age;
@@ -29,13 +29,18 @@ public class User {
 		return age;
 	}
 
+	@Override
+	public int compareTo(User user) {
+		return name.compareTo(user.name);
+	}
+
 	public static List<User> getUsers() {
 		List<User> list = new ArrayList<>();
-		list.add(new User(1, "Dinesh", 20));
-		list.add(new User(2, "Kamal", 15));
-		list.add(new User(3, "Vijay", 25));
-		list.add(new User(4, "Ramesh", 30));
-		list.add(new User(5, "Mahesh", 18));
+		list.add(new User(1, "Di", 20));
+		list.add(new User(2, "Hi", 15));
+		list.add(new User(3, "A2", 25));
+		list.add(new User(4, "V4", 30));
+		list.add(new User(5, "T7", 18));
 		return list;
 	}
 }

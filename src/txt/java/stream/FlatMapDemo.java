@@ -32,6 +32,9 @@ public class FlatMapDemo {
 		List<Writer> writers = Arrays.asList(w1, w2);
 
 //		Stream<List<Book>> s = Stream.of(w1.getBooks(), w2.getBooks());
+//		Stream<List<Book>> s = 
+		List<String> lst = new ArrayList<String>();
+
 		Book bookMax = Stream.of(w1.getBooks(), w2.getBooks()).flatMap(new Function<List<Book>, Stream<Book>>() {
 
 			@Override
@@ -55,6 +58,21 @@ public class FlatMapDemo {
 				.max((b1, b2) -> b2.getPrice() - b1.getPrice()).get();
 		System.out.println("Book with min price:" + bookMin.getName() + ", " + bookMin.getPrice());
 
+		//--------------------------------------------------------------
+		System.out.println("Test filter not action if not flatMap");
+//		lst.add("s1");
+//		lst.add("s2");
+//		Stream.of(lst).filter(s -> "s1".equals(s.toString())).forEach(s -> System.out.println(s)); // -> Not filter
+
+		List<String> students1 = new ArrayList<>();
+		students1.add("Khanh");
+		List<String> students2 = new ArrayList<>();
+		students2.add("Thanh");
+		students2.add("Dung");
+		List<List<String>> students = Arrays.asList(students1, students2);
+		Stream<List<String>> streamST = students.stream();
+		Stream<String> flatMap = streamST.flatMap(l -> l.stream());
+
 		System.out.println("\n----------Stream flatMap with List of Lists----------");
 		List<Book> list1 = Arrays.asList(new Book(10, "AAA"), new Book(20, "BBB"));
 		List<Book> list2 = Arrays.asList(new Book(30, "XXX"), new Book(15, "ZZZ"));
@@ -69,8 +87,7 @@ public class FlatMapDemo {
 			}
 		}).max((b1, b2) -> b1.getPrice() - b2.getPrice()).get();
 
-		System.out.println(
-				"Book with min price with List of Lists: " + bookMaxDList.getName() + ", " + bookMaxDList.getPrice());
+		System.out.println("Book with min price with List of Lists: " + bookMaxDList.getName() + ", " + bookMaxDList.getPrice());
 
 
 		// Stream flatMap with Array

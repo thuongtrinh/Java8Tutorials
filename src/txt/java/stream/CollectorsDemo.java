@@ -128,10 +128,10 @@ public class CollectorsDemo {
 		});
 
 		System.out.println("\n----------Collectors.mapping----------");
-		List<Person> personsMap1 = Person.getList();
-		Map<Integer, List<Person>> mapPerson1 = personsMap1.stream().collect(Collectors.groupingBy(Person::getAge));
+		List<Person> personsList = Person.getList();
+		Map<Integer, List<Person>> personMap1 = personsList.stream().collect(Collectors.groupingBy(Person::getAge));
 
-		mapPerson1.forEach(new BiConsumer<Integer, List<Person>>() {
+		personMap1.forEach(new BiConsumer<Integer, List<Person>>() {
 
 			@Override
 			public void accept(Integer t, List<Person> u) {
@@ -141,7 +141,7 @@ public class CollectorsDemo {
 		});
 
 		System.out.println("\nEx2: use Collectors.mapping ");
-		Map<Integer, String> personsMap2 = personsMap1.stream().collect(
+		Map<Integer, String> personsMap2 = personsList.stream().collect(
 				Collectors.groupingBy(Person::getAge, Collectors.mapping(Person::getName, Collectors.joining(","))));
 
 		personsMap2.forEach(new BiConsumer<Integer, String>() {

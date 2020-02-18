@@ -1,6 +1,6 @@
 package txt.java.model;
 
-public class Student {
+public class Student implements Comparable<Student> {
 	private String name;
 	private int age;
 	private String className;
@@ -21,5 +21,15 @@ public class Student {
 
 	public String getClassName() {
 		return className;
+	}
+
+	@Override
+	public String toString() {
+		return name + " - " + className + " - " + age;
+	}
+
+	@Override
+	public int compareTo(Student o) {
+		return name.compareTo(o.getName());
 	}
 }
