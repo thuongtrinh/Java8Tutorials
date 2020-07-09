@@ -11,12 +11,17 @@ import java.util.function.Supplier;
 
 public class SupplyAsyncDemo {
 
-	public static void main(String [] args) throws InterruptedException, ExecutionException {
+	public static void main(String[] args) throws InterruptedException, ExecutionException {
 		System.out.println("1. SupplyAsyncExample1");
-		CompletableFuture<String> cf = CompletableFuture.supplyAsync(() -> getDataById(10)).thenApply(data -> sendData(data));
-		cf.get();
+		CompletableFuture<String> cf = CompletableFuture.supplyAsync(() -> getDataById(10))
+				.thenApply(data -> sendData(data));
+		String data = cf.get();
+		System.out.println(data);
 
-		System.out.println("\nTheory: if the supplier of supplyAsync() is taking longer time then thenApply() will be executed by thread used by supplyAsync() and hence main thread will not be blocked");
+		System.out.println(
+				"\nTheory: if the supplier of supplyAsync() is taking longer time then thenApply() "
+				+ "will be executed by thread used by supplyAsync() and hence main thread will not be blocked");
+
 		// Code detail
 		CompletableFuture.supplyAsync(new Supplier<String>() {
 
@@ -32,13 +37,13 @@ public class SupplyAsyncDemo {
 			}
 		}).get();
 
-		//SupplyAsyncExample2
+		// SupplyAsyncExample2
 		supplyAsyncExample2();
 
-		//SupplyAsyncExample3
+		// SupplyAsyncExample3
 		supplyAsyncExample3();
 
-		//SupplyAsyncExample4
+		// SupplyAsyncExample4
 		supplyAsyncExample4();
 	}
 
@@ -60,16 +65,18 @@ public class SupplyAsyncDemo {
 		} catch (InterruptedException e) {
 			e.printStackTrace();
 		}
+
 		return "Data:" + id;
 	}
 
-	//------------------------------------------------
+	// ------------------------------------------------
 	// SupplyAsyncExample2
 	private static void supplyAsyncExample2() throws InterruptedException, ExecutionException {
 		System.out.println("\n2. SupplyAsyncExample2");
 		ExecutorService executorService = Executors.newSingleThreadExecutor();
-		CompletableFuture<String> cf1 = CompletableFuture.supplyAsync(
-				()-> getDataById(10), executorService).thenApply(data -> sendData(data));
+		CompletableFuture<String> cf1 = CompletableFuture.supplyAsync(() -> getDataById(10), executorService)
+				.thenApply(data -> sendData(data));
+
 		cf1.get();
 		executorService.shutdown();
 	}
@@ -77,18 +84,19 @@ public class SupplyAsyncDemo {
 	// SupplyAsyncExample3
 	private static void supplyAsyncExample3() throws InterruptedException, ExecutionException {
 		System.out.println("\n3. SupplyAsyncExample3");
-		CompletableFuture<String> cf = CompletableFuture.supplyAsync(()-> getDataById(10))
-			.whenComplete((data, error) -> {
-				consumeData(data);
-				if(error!= null) {
-					System.out.println(error);
-				}
-			 });
+		CompletableFuture<String> cf = CompletableFuture.supplyAsync(() -> getDataById(10))
+				.whenComplete((data, error) -> {
+					consumeData(data);
+					if (error != null) {
+						System.out.println(error);
+					}
+				});
+
 		cf.get();
 	}
 
 	private static void consumeData(String data) {
-		System.out.println("consumeData: "+ Thread.currentThread().getName());
+		System.out.println("consumeData: " + Thread.currentThread().getName());
 		System.out.println(data);
 	}
 

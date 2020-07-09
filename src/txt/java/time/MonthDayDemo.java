@@ -27,6 +27,7 @@ public class MonthDayDemo {
 	private static void monthDayDemo() {
 		System.out.println("\n---monthDayDemo---");
 		MonthDay mday = MonthDay.now();
+		System.out.println(mday);
 		System.out.println(mday.getDayOfMonth());
 		System.out.println(mday.getMonth());
 		System.out.println(mday.atYear(2014));
@@ -35,6 +36,7 @@ public class MonthDayDemo {
 	private static void offsetDateTimeDemo() {
 		System.out.println("\n---offsetDateTimeDemo---");
 		OffsetDateTime offsetDT = OffsetDateTime.now();
+		System.out.println(offsetDT);
 		System.out.println(offsetDT.getDayOfMonth());
 		System.out.println(offsetDT.getDayOfYear());
 		System.out.println(offsetDT.getDayOfWeek());
@@ -56,6 +58,7 @@ public class MonthDayDemo {
 	private static void offsetTimeDemo() {
 		System.out.println("\n---offsetTimeDemo---");
 		OffsetTime offTime = OffsetTime.now();
+		System.out.println(offTime);
 		System.out.println(offTime.getHour() + " hour");
 		System.out.println(offTime.getMinute() + " minute");
 		System.out.println(offTime.getSecond() + " second");

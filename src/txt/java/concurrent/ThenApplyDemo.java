@@ -13,6 +13,7 @@ public class ThenApplyDemo {
 				.thenApply(data -> "Thuong " + data);
 		String msg = cfuture.get();
 		System.out.println(msg);
+//		System.out.println("Print to test blocking");
 
 		// ThenApplyDemo2
 		CompletableFuture<String> cfuture1 = 
@@ -25,6 +26,8 @@ public class ThenApplyDemo {
 		list.stream().map(num -> CompletableFuture.supplyAsync(() -> num * num))
 			.map(cfuture2 -> cfuture2.thenApply(res -> "Square: " + res)).map(t -> t.join())
 			.forEach(s -> System.out.println(s));
+
+		System.out.println("Finish");
 	}
 
 	private static int computeArea(int a, int b) {

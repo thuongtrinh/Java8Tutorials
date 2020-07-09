@@ -16,7 +16,7 @@ public class CollectorsListToMap {
 	public static void main(String[] args) {
 		List<String> list = new ArrayList<>();
 		list.add("Mohan");
-		list.add("Sohan");
+		list.add("SMohanohan");
 		list.add("Mahesh");
 		
 		// List to Map with Key Mapper and Value Mapper

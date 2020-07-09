@@ -33,8 +33,10 @@ public class ParallelStreamDemo {
 		System.out.println("\n1. SequentialStream");
 		List<String> values = createDummyData();
 		long startTime = System.nanoTime();
-		long count = values.stream().sorted().count();
-		System.out.println(count);
+
+		long count = values.stream().count();
+		System.out.println("count: " + count);
+
 		long endTime = System.nanoTime();
 		long millis = TimeUnit.NANOSECONDS.toMillis(endTime - startTime);
 
@@ -45,9 +47,11 @@ public class ParallelStreamDemo {
 	private static void parallelStreamExample() {
 		System.out.println("\n2. ParallelStream");
 		List<String> values = createDummyData();
+
 		long startTime = System.nanoTime();
 		long count = values.parallelStream().sorted().count();
-		System.out.println(count);
+		System.out.println("count: " + count);
+
 		long endTime = System.nanoTime();
 		long millis = TimeUnit.NANOSECONDS.toMillis(endTime - startTime);
 

@@ -47,7 +47,6 @@ public class LocalDateDemo {
 		// toEpochSecond
 		System.out.println(localDate.toEpochDay());
 		System.out.println(localDate.toEpochSecond(LocalTime.now(), ZoneOffset.MAX));
-
 	}
 
 	private static void adjustInto() {
@@ -59,6 +58,21 @@ public class LocalDateDemo {
 
 		temporalObj = localDate.adjustInto(temporalObj);
 		System.out.println(temporalObj);
+
+		System.out.println("---Ex2---");
+		ZonedDateTime date = ZonedDateTime.now();
+
+		// prints the date
+		System.out.println(date);
+
+		// Parses the date
+		LocalDate date1 = LocalDate.parse("2015-01-31");
+
+		// Uses the function to adjust the date
+		date = (ZonedDateTime) date1.adjustInto(date);
+
+		// Prints the adjusted date
+		System.out.println(date);
 	}
 
 	private static void datesUntil() {
@@ -97,9 +111,10 @@ public class LocalDateDemo {
 
 	private static void afterBeforeEqual() {
 		System.out.println("\n---AfterBeforeEqual---");
-		LocalDate localDate1 = LocalDate.parse("2020-03-18");
-		LocalDate localDate2 = LocalDate.parse("2020-05-12");
+		LocalDate localDate1 = LocalDate.parse("2020/03/18", DateTimeFormatter.ofPattern("yyyy/MM/dd"));
+		LocalDate localDate2 = LocalDate.parse("2020-05-12"); // Pattern default: yyyy-MM-dd
 
+		System.out.println(localDate1);
 		System.out.println(localDate1.isAfter(localDate2));
 		System.out.println(localDate1.isBefore(localDate2));
 		System.out.println(localDate1.isEqual(localDate2));

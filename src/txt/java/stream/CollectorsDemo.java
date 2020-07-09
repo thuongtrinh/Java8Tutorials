@@ -33,6 +33,11 @@ public class CollectorsDemo {
 		Double result4 = list2.stream().collect(Collectors.collectingAndThen(Collectors.averagingLong(v -> v*2), s-> s*s));
 		System.out.println(result4);
 
+		List<String> listP = Arrays.asList("Java", "C++", "C#", "PHP");
+		List<String> result5 = listP.stream().collect(
+		Collectors.collectingAndThen(Collectors.toList(), x -> x.subList(0, 2)));
+		System.out.println(result5); // => [Java, C++]
+
 		System.out.println("----------counting----------");
 		long counting = list2.stream().collect(Collectors.counting());
 		System.out.println(counting);

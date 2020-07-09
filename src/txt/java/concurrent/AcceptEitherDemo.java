@@ -6,8 +6,13 @@ public class AcceptEitherDemo {
 
 	public static void main(String[] args) {
 		// AcceptEitherDemo1
-		CompletableFuture.supplyAsync(() -> "Welcome ABC")
-				.acceptEither(CompletableFuture.supplyAsync(() -> "Welcome XYZ"), s -> System.out.println(s));
+		CompletableFuture.supplyAsync(() -> {
+			System.out.println("exe ABC");
+			return "Welcome ABC";
+		}).acceptEither(CompletableFuture.supplyAsync(() -> {
+			System.out.println("exe XYZ");
+			return "Welcome XYZ";
+		}), s -> System.out.println(s));
 
 		// AcceptEitherDemo2
 		CompletableFuture<String> cfuture = CompletableFuture.supplyAsync(() -> getA());

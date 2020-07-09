@@ -13,12 +13,12 @@ import txt.java.model.Floor;
 public class ParallelPrefixDemo {
 
 	public static void main(String[] args) {
-		parallelPrefixDemo();
 		parallelPrefixDemoWithPrimitiveData();
+		parallelPrefixDemo();
 	}
 
 	private static void parallelPrefixDemoWithPrimitiveData() {
-		System.out.println("\n2. parallelPrefixDemo With Primitive Data");
+		System.out.println("\n1. parallelPrefixDemo With Primitive Data");
 
 		int[] intNum1 = { 3, 4, 2, 5, 1, 6, 3 };
 		IntBinaryOperator intOpt = (i1, i2) -> i1 * i2;
@@ -46,14 +46,25 @@ public class ParallelPrefixDemo {
 	}
 
 	private static void parallelPrefixDemo() {
-		System.out.println("1. ParallelPrefixDemo");
+		System.out.println("\n\n2. ParallelPrefixDemo");
+
+		BinaryOperator<Floor> opt2 = new BinaryOperator<Floor>() {
+
+			@Override
+			public Floor apply(Floor f1, Floor f2) {
+				return new Floor(f1.getLength() + f2.getLength(), f1.getWidth() + f2.getWidth());
+			}
+		};
 
 		BinaryOperator<Floor> opt = (f1, f2) -> new Floor(f1.getLength() + f2.getLength(),
 				f1.getWidth() + f2.getWidth());
 		Floor[] floors = Floor.getFloorSizes();
 
+//		BiFunction<Floor> opt = (f1, f2) -> new Floor(f1.getLength() + f2.getLength(), f1.getWidth() + f2.getWidth());
+
 		System.out.println("parallel prefix for complete array");
 		Arrays.parallelPrefix(floors, opt);
+		
 		Consumer<Floor> print = f -> System.out.println(f.getLength() + ", " + f.getWidth());
 		Arrays.stream(floors).forEach(print);
 

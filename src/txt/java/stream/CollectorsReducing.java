@@ -20,7 +20,7 @@ public class CollectorsReducing {
 		Student s4 = new Student(null, "C", 21);
 		List<Student> list = Arrays.asList(s1, s2, s3, s4);
 
-		Comparator<Student> ageComparator = Comparator.comparing(Student::getAge);
+		Comparator<Student> ageComparator = Comparator.comparing(Student::getClassName);
 		Map<Integer, Optional<Student>> map = list.stream().collect(
 				Collectors.groupingBy(Student::getAge, Collectors.reducing(BinaryOperator.maxBy(ageComparator))));
 
@@ -46,6 +46,29 @@ public class CollectorsReducing {
 				.groupingBy(Student2::getClassName, Collectors.reducing(BinaryOperator.maxBy(ageComparator1))));
 		eldestByClass.forEach((k, v) -> System.out.println("Class:" + k + " Age:"
 				+ ((Optional<Student2>) v).get().getAge() + " Name:" + ((Optional<Student2>) v).get().getName()));
+
+		// Ex3:
+		System.out.println("\n----------Ex3 of Collectors.reducing()----------");
+		List<Employee> listEmp = Arrays.asList( //
+				new Employee("Emp1", 22, "A", 1500), //
+				new Employee("Emp2", 23, "A", 1600), //
+				new Employee("Emp3", 22, "B", 1400), //
+				new Employee("Emp4", 21, "B", 1700) //
+		);
+
+		// Find employees with the maximum age of each company
+		Comparator<Employee> ageEmpComparator = Comparator.comparing(Employee::getAge);
+
+		Map<String, Optional<Employee>> mapEmp = listEmp.stream().collect(Collectors.groupingBy(Employee::getCompanyName,
+				Collectors.reducing(BinaryOperator.maxBy(ageEmpComparator))));
+
+		mapEmp.forEach((k, v) -> System.out.println("Company: " + k + ", Age: " + ((Optional<Employee>) v).get().getAge()
+				+ ", Name: " + ((Optional<Employee>) v).get().getName()));
+
+		// Summary salary
+		Integer bonus = 0;
+		Integer totalSalaryExpense = listEmp.stream().map(emp -> emp.getSalary()).reduce(bonus, (a, b) -> a + b);
+		System.out.println("Total salary expense: " + totalSalaryExpense);
 	}
 
 	private static class Student2 {
@@ -70,5 +93,35 @@ public class CollectorsReducing {
 		public String getClassName() {
 			return className;
 		}
+	}
+}
+
+class Employee {
+	private String name;
+	private Integer age;
+	private String companyName;
+	private Integer salary;
+
+	public Employee(String name, Integer age, String companyName, Integer salary) {
+		this.name = name;
+		this.age = age;
+		this.companyName = companyName;
+		this.salary = salary;
+	}
+
+	public String getName() {
+		return name;
+	}
+
+	public Integer getAge() {
+		return age;
+	}
+
+	public String getCompanyName() {
+		return companyName;
+	}
+
+	public Integer getSalary() {
+		return salary;
 	}
 }

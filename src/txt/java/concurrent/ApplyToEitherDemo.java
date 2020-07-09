@@ -19,11 +19,17 @@ public class ApplyToEitherDemo {
 
 		// ApplyToEitherDemo2
 		System.out.println("\nApplyToEitherDemo2");
-		CompletableFuture<Person> mainFuture = CompletableFuture.supplyAsync(() -> getPerson());
-		CompletableFuture<Person> defaultFuture = CompletableFuture.supplyAsync(() -> getDefaultFuture());
+		CompletableFuture<Person> mainFuture = CompletableFuture.supplyAsync(() -> {
+			System.out.println("exe mainFuture");
+			return getPerson();
+		});
+		CompletableFuture<Person> defaultFuture = CompletableFuture.supplyAsync(() -> {
+			System.out.println("exe defaultFuture");
+			return getDefaultFuture();
+		});
 
 		CompletableFuture<String> future2 = mainFuture.applyToEither(defaultFuture,
-			person -> person.getName() + " - " + person.getId());
+				person -> "=>" + person.getName() + " - " + person.getId());
 		System.out.println(future2.join());
 
 		// ApplyToEitherDemo3
@@ -35,7 +41,7 @@ public class ApplyToEitherDemo {
 		CompletableFuture<Person> mainFuture = CompletableFuture.supplyAsync(() -> getPerson());
 		CompletableFuture<Person> defaultFuture = CompletableFuture.supplyAsync(() -> getDefaultFuture());
 		CompletableFuture<String> cfuture = mainFuture.applyToEither(defaultFuture,
-			person -> person.getName() + " - " + person.getId());
+				person -> person.getName() + " - " + person.getId());
 
 		CompletableFuture<String> otherCFuture = CompletableFuture.supplyAsync(() -> getMsg());
 		CompletableFuture<Void> cf = cfuture.acceptEither(otherCFuture, s -> System.out.println(s));

@@ -73,6 +73,7 @@ public class CallableAndFuture {
 			// add Future to the list, we can get return value using Future
 			list2.add(future2);
 		}
+
 		int sum2 = 0;
 		for (Future<Integer> f : list2) {
 			try {

@@ -27,9 +27,7 @@ public class FunctionRunnable {
 		th.start();
 
 		// Functional
-		List<Book> books = Arrays.asList(new Book(10, "AAA"), 
-				new Book(20, "BBB"), 
-				new Book(30, "XXX"),
+		List<Book> books = Arrays.asList(new Book(10, "AAA"), new Book(20, "BBB"), new Book(30, "XXX"),
 				new Book(15, "ZZZ"));
 
 //		r = () -> {
@@ -44,7 +42,8 @@ public class FunctionRunnable {
 //		};
 
 		r = () -> {
-			Consumer<Book> consumerBook = (b) -> System.out.println("Name: " + b.getName() + ", price: " + b.getPrice());
+			Consumer<Book> consumerBook = (b) -> System.out
+					.println("Name: " + b.getName() + ", price: " + b.getPrice());
 			books.forEach(consumerBook);
 		};
 
@@ -56,6 +55,7 @@ public class FunctionRunnable {
 
 			@Override
 			public void run() {
+				System.out.println("-----------");
 				books.forEach(Book::print);
 			}
 		};
@@ -85,7 +85,7 @@ public class FunctionRunnable {
 		List<Integer> integers = Arrays.asList(1, 2, 3, 4, 5);
 
 		Callable<Integer> callableObj = new Callable<Integer>() {
-			
+
 			@Override
 			public Integer call() throws Exception {
 				return integers.stream().mapToInt(n -> n).sum();
@@ -101,5 +101,6 @@ public class FunctionRunnable {
 		} catch (ExecutionException e) {
 			e.printStackTrace();
 		}
+		System.out.println("------Finish------");
 	}
 }

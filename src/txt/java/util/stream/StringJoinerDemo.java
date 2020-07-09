@@ -17,18 +17,22 @@ public class StringJoinerDemo {
 	}
 
 	private static void stringJoinerMerge() {
+		System.out.println("\n------stringJoinerMerge------");
+
 		StringJoiner sjObj = new StringJoiner(",", "{", "}");
 		// Add Element
 		sjObj.add("AA").add("BB").add("CC").add("DD").add("EE");
+		System.out.println(sjObj);
 
 		// Create another StringJoiner
 		StringJoiner otherSj = new StringJoiner(":", "(", ")");
 		otherSj.add("10").add("20").add("30");
+		System.out.println(otherSj);
 
 		// Use StringJoiner.merge(StringJoiner o)
 		StringJoiner finalSj = sjObj.merge(otherSj);
 		System.out.println("\n" + finalSj);
-	
+
 		// get length using StringJoiner.length()
 		System.out.println("Length of Final String:" + finalSj.length());
 	}

@@ -29,6 +29,7 @@ public class FindDemo {
 		System.out.println(result1.get());
 
 		// Ex3: findAny with stream is parallel
+		System.out.println("\n------Ex3------");
 		List<Integer> list3 = Arrays.asList(1, 2, 3, 4, 5);
 		Optional<Integer> result2 = list3.stream().parallel().filter(num -> num < 4).findAny();
 		int loopCount = 0;

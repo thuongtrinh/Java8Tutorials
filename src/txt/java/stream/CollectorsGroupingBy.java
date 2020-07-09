@@ -42,14 +42,14 @@ public class CollectorsGroupingBy {
 			@Override
 			public void accept(Integer k, List<Student> v) {
 				System.out.println("Key: " + k);
-				System.out.println(v.stream().map(m -> m.getName()).collect(Collectors.joining(",")));
+				System.out.println("Value: " + v.stream().map(m -> m.getName()).collect(Collectors.joining(",")));
 			}
 		});
 
 		System.out.println("\n------Group Student on the basis of age with joining case 2 using mapping------------");
 		list.stream().collect(Collectors.groupingBy(Student::getAge,
 						Collectors.mapping(Student::getName, Collectors.joining(","))))
-				.forEach((k, v) -> System.out.println("Key " + k + ":\n" + v));
+				.forEach((k, v) -> System.out.println("Key " + k + ":\nValue: " + v));
 		
 	}
 }

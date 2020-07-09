@@ -77,7 +77,7 @@ public class TypePredicate {
 		Predicate<Integer> isNumberMatched = n -> n > 10 && n < 20;
 		// With negate()
 		Boolean result3 = isNumberMatched.test(15);
-		System.out.println(result3); // false
+		System.out.println(result3); // true
 
 		//
 		Predicate<Integer> isLessThan50 = n -> n < 50;
@@ -96,14 +96,13 @@ public class TypePredicate {
 		Booki mahabharatBook = new Booki("Mahabharat", "Vyas");
 		Predicate<Booki> isMahabharatBook = Predicate.isEqual(mahabharatBook);
 		System.out.println(isMahabharatBook.test(new Booki("Mahabharat", "Vyas"))); // true
-		System.out.println(isMahabharatBook.test(new Booki("Ramayan", "Valmiki"))); // true
+		System.out.println(isMahabharatBook.test(new Booki("Ramayan", "Valmiki"))); // false
 
 		// not(Predicate<? super T> target) -> The method not has been introduced in Java 11
-		/*
-		 * System.out.println("------not(Predicate<? super T> target)------");
-		 * Predicate<Integer> isOdd2 = n -> n % 2 == 1; Predicate<Integer> isEven2 =
-		 * Predicate.not(isOdd2); System.out.println(isEven.test(10)); // true
-		 */
+		System.out.println("------not(Predicate<? super T> target)------");
+		Predicate<Integer> isOdd2 = n -> n % 2 == 1;
+		Predicate<Integer> isEven2 = Predicate.not(isOdd2);
+		System.out.println(isEven2.test(10)); // true
 
 		// Predicate with Stream
 		System.out.println("1.------Predicate with Stream------");

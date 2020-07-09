@@ -20,6 +20,9 @@ public class ArraysParallelSort {
 		int[] num1 = { 3, 6, 2, 10, 4, 1, 7 };
 		System.out.println("--Sort complete Integer array--");
 		Arrays.parallelSort(num1);
+
+		System.out.println(Arrays.toString(num1));
+
 		IntConsumer printInt = i -> System.out.print(i + " ");
 		Arrays.stream(num1).forEach(printInt);
 
